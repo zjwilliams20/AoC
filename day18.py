@@ -2,6 +2,20 @@
 # day 18
 #########################
 
+'''Grammar:
+expr: NUM
+   |  expr + expr
+   |  expr * expr
+   |  ( exp )
+
+expr: NUM
+   |  NUM + expr
+   |  NUM * expr
+   |  ( expr )
+   |  ( expr ) + expr
+   |  ( expr ) * expr
+'''
+
 import ply.lex as lex
 import ply.yacc as yacc
 

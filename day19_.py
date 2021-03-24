@@ -2,6 +2,8 @@
 # day 19_
 #########################
 
+# couldn't resolve shift conflicts, archiving this
+
 import ply.lex as lex
 import ply.yacc as yacc
 import numpy as np
