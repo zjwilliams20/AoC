@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+
+def part1(lines):
+    pass
+
+
+def part2(lines):
+    pass
+
+
+if __name__ == "__main__":
+    with open("2022/input/_.txt") as file:
+        lines = list(file)
+
+    print("1: ", part1(lines))
+    print("2: ", part2(lines))
