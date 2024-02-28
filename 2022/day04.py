@@ -9,21 +9,24 @@ test = """2-4,6-8
 6-6,4-6
 2-6,4-8"""
 
-def part1(lines):
-    n_full_overlaps = 0
+def _count_condition(lines, overlap_func):
+    count = 0
     for line in lines:
-        lmin, lmax, rmin, rmax = [int(n) for n in re.findall(r"\d+", line)]
-        n_full_overlaps += rmin <= lmin and rmax >= lmax \
-            or rmin >= lmin and rmax <= lmax
-    return n_full_overlaps
+        bounds = [int(n) for n in re.findall(r"\d+", line)]
+        count += overlap_func(*bounds)
+    return count
+    
+
+def part1(lines):
+    overlap_func = lambda lmin, lmax, rmin, rmax: \
+        rmin <= lmin and rmax >= lmax or rmin >= lmin and rmax <= lmax
+    return _count_condition(lines, overlap_func)
 
 
 def part2(lines):
-    n_overlaps = 0
-    for line in lines:
-        lmin, lmax, rmin, rmax = [int(n) for n in re.findall(r"\d+", line)]
-        n_overlaps += min(rmax, lmax) - max(rmin, lmin) + 1 > 0
-    return n_overlaps
+    overlap_func = lambda lmin, lmax, rmin, rmax: \
+        min(rmax, lmax) - max(rmin, lmin) + 1 > 0
+    return _count_condition(lines, overlap_func)
 
 
 if __name__ == "__main__":

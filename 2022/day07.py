@@ -124,7 +124,7 @@ def _count_sizes_lt(node, max_size, total=0):
     return total
 
 
-def _find_smallest_directory_gt(node, min_size, best_size=1e20):
+def _find_smallest_directory_gte(node, min_size, best_size=1e20):
     if not isinstance(node, Directory) or node.size <= min_size:
         return best_size
 
@@ -132,7 +132,7 @@ def _find_smallest_directory_gt(node, min_size, best_size=1e20):
         best_size = node.size
 
     child_best = min(
-        _find_smallest_directory_gt(child, min_size, best_size) 
+        _find_smallest_directory_gte(child, min_size, best_size) 
         for child in node.children
         )
 
@@ -153,7 +153,7 @@ def part2(lines):
     unused_space = disk_space - tree.size
     min_size = update_size - unused_space
 
-    return _find_smallest_directory_gt(tree, min_size)
+    return _find_smallest_directory_gte(tree, min_size)
 
 
 if __name__ == "__main__":
